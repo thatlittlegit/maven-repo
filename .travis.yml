@@ -7,4 +7,4 @@ deploy:
     branch: master
 
 script:
-  - find jars | tr '/' '\t' | cut -f2-4 | awk '{gsub(/\.pom$/, "");gsub(/\.jar$/, "");if (NF == 3) print}' >index
+  - rm .travis.yml README.md && find jars | tr '/' '\t' | cut -f2-4 | awk '{gsub(/\.pom$/, "");gsub(/\.jar$/, "");if (NF == 3) print}' >index
