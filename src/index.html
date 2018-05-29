@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Maven Repository</title>
+		<!-- Use Bootstrap 3 because I think it looks better for this... idk why -->
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	</head>
+	<body>
+		<h1 hidden>Maven Repository</h1> <!-- SEO -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">Maven Repository</a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container-fluid">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Information</h3>
+				</div>
+				<div class="panel-body">
+					{{{documentation}}}
+				</div>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Library</th>
+						<th>Version</th>
+						<th>Download</th>
+					</tr>
+				</thead>
+				<tbody>
+				{{#each libs}}
+				{{#each this.versions}}
+					<tr>
+						{{#ifequal @index value="0"}}
+						<th rowspan="{{../versions.length}}">{{../key}}</th>
+						{{/ifequal}}
+						<td>{{#arrval this value="2"}}{{/arrval}}</td>
+						<td>
+							<div class="input-group" role="group">
+								<span class="input-group-btn">
+									<a href='jars/{{arrval this value="0"}}/{{../key}}/{{arrval this value="2"}}/{{../key}}-{{arrval this value="2"}}.pom' type="button" class="btn btn-default">
+										<span class="glyphicon glyphicon-file"></span>
+									</a>
+									<a href='jars/{{arrval this value="0"}}/{{../key}}/{{arrval this value="2"}}/{{../key}}-{{arrval this value="2"}}.jar' type="button" class="btn btn-primary">
+										<span class="glyphicon glyphicon-circle-arrow-down"></span>
+									</a>
+								</span>
+								<input type="text" class="form-control" style="font-family: monospace;" readonly value='compile "{{#arrval this value="0"}}{{/arrval}}:{{../key}}:{{#arrval this value="2"}}{{/arrval}}"'/>
+							</div>
+						</td>
+					</tr>
+				{{/each}}
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+	
