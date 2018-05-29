@@ -8,5 +8,5 @@ deploy:
 
 script:
   - find jars | tr '/' '\t' | cut -f2-4 | awk '{gsub(/\.pom$/, "");gsub(/\.jar$/, "");if (NF == 3) print}' | sort -u >index
-  - cd src && npm i && node build.js
+  - cd src && npm i && node build.js && cd ..
   - rm .travis.yml README.md
