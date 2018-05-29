@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "got": "^8.3.1",
+    "jstransformer-handlebars": "^1.1.0",
+    "lodash.map": "^4.6.0",
+    "marked": "^0.4.0",
+    "p-all": "^1.0.0",
+    "pify": "^3.0.0"
+  }
+}

@@ -7,4 +7,6 @@ deploy:
     branch: master
 
 script:
-  - rm .travis.yml README.md && find jars | tr '/' '\t' | cut -f2-4 | awk '{gsub(/\.pom$/, "");gsub(/\.jar$/, "");if (NF == 3) print}' | sort -u >index
+  - find jars | tr '/' '\t' | cut -f2-4 | awk '{gsub(/\.pom$/, "");gsub(/\.jar$/, "");if (NF == 3) print}' | sort -u >index
+  - cd src && npm i && node build.js
+  - rm .travis.yml README.md
