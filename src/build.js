@@ -4,6 +4,7 @@ const map = require('lodash.map');
 const marked = require('marked');
 const pAll = require('p-all');
 const fs = require('pify')(require('fs'));
+const semverSort = require('semver-sort');
 
 pAll([
 	() => got('https://gh.thatlittlegit.tk/maven-repo/index'),
@@ -24,7 +25,7 @@ pAll([
 	delete ret[undefined];
 
 	return [map(ret, x => {
-		x.versions.reverse();
+		x.versions = semverSort.desc(x.versions);
 		return x;
 	}), results[1], results[2]];
 })
