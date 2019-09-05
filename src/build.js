@@ -7,7 +7,7 @@ const fs = require('pify')(require('fs'));
 const semverSort = require('semver-sort');
 
 pAll([
-	() => got('https://gh.thatlittlegit.tk/maven-repo/index'),
+	() => got('https://thatlittlegit.github.io/maven-repo/index'),
 	() => fs.readFile(require('path').join(__dirname, '..', 'README.md'), 'utf-8'),
 	() => fs.readFile('index.html', 'utf-8')
 ]).then(results => {
