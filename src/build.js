@@ -1,19 +1,21 @@
 const handlebars = require('jstransformer-handlebars');
-const got = require('got');
 const map = require('lodash.map');
 const marked = require('marked');
 const pAll = require('p-all');
-const fs = require('pify')(require('fs'));
 const semverSort = require('semver-sort');
+const path = require('path');
+
+const { promisify } = require('util');
+const readFile = promisify(require('fs').readFile);
+const writeFile = promisify(require('fs').writeFile);
 
 pAll([
-	() => got('https://gh.thatlittlegit.tk/maven-repo/index'),
-	() => fs.readFile(require('path').join(__dirname, '..', 'README.md'), 'utf-8'),
-	() => fs.readFile('index.html', 'utf-8')
+	() => readFile(path.join(__dirname, '..', 'index'), 'utf-8'),
+	() => readFile(path.join(__dirname, '..', 'README.md'), 'utf-8'),
+	() => readFile('index.html', 'utf-8')
 ]).then(results => {
 	let ret = {};
-	results[0]	
-		.body
+	results[0]
 		.split('\n')
 		.map(x => x.split('\t'))
 		.forEach((x) => {
@@ -43,5 +45,5 @@ pAll([
 			documentation: results[1]
 		})
 	)
-	.then(out => fs.writeFile(require('path').join(__dirname, '..', 'index.html'), out))
+	.then(out => writeFile(require('path').join(__dirname, '..', 'index.html'), out))
 	.catch(console.error);
