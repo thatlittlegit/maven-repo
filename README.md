@@ -11,7 +11,7 @@ JAR.
 <repositories>
     <repository>
         <id>thatlittlegit</id>
-        <url>https://thatlittlegit.github.io/maven-repo</url>
+        <url>https://thatlittlegit.github.io/maven-repo/jars</url>
     </repository>
 </repositories>
 ```
@@ -20,7 +20,7 @@ JAR.
 repositories {
     maven {
         name 'thatlittlegit'
-        url 'https://thatlittlegit.github.io/maven-repo'
+        url 'https://thatlittlegit.github.io/maven-repo/jars'
     }
 }
 ```
